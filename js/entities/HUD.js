@@ -43,12 +43,13 @@ var BackgroundLayer = me.ImageLayer.extend({
     init: function(image, z, speed) {
         var settings = {};
         settings.name = image;
-        settings.width = 900;
-        settings.height = 600;
+        settings.width = window.innerWidth; // Динамическая ширина
+        settings.height = window.innerHeight; // Динамическая высота
         settings.image = image;
         settings.z = z;
         settings.ratio = 1;
-        // call parent constructor
+
+        // Вызов родительского конструктора
         this._super(me.ImageLayer, 'init', [0, 0, settings]);
     },
 
@@ -57,7 +58,7 @@ var BackgroundLayer = me.ImageLayer.extend({
             game.data.muted = !game.data.muted;
             if (game.data.muted){
                 me.audio.disable();
-            }else{
+            } else {
                 me.audio.enable();
             }
         }

@@ -30,17 +30,38 @@ var game = {
     ],
 
     "onload": function() {
-        if (!me.video.init(900, 600, {
+        // Получаем размеры окна
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        
+        if (!me.video.init(width, height, {
             wrapper: "screen",
-            scale : "auto",
-            scaleMethod: "fit"
+            scale: "auto",
+            scaleMethod: "stretch-fit",
+            renderer: me.video.CANVAS
         })) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
+        
+        // Обновляем размеры при изменении окна
+        window.addEventListener('resize', () => {
+            me.video.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        
+    
+        // Обновляем размеры при изменении окна
+        window.addEventListener('resize', () => {
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
+            me.video.setSize(newWidth, newHeight);
+        });
+    
         me.audio.init("mp3,ogg");
         me.loader.preload(game.resources, this.loaded.bind(this));
     },
+    
 
     "loaded": function() {
         me.state.set(me.state.MENU, new game.TitleScreen());

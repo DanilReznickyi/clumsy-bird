@@ -17,12 +17,20 @@ body {
   margin: 0;
 }
 
-#screen canvas {
-  margin: auto;
-  /* Hide the gap for font descenders. */
-  display: block;
+#screen {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  /* disable scaling interpolation */
+#screen canvas {
+  width: 100vw; /* 100% ширины окна */
+  height: 100vh; /* 100% высоты окна */
+  margin: 0;
+  display: block;
   image-rendering: optimizeSpeed;
   image-rendering: -moz-crisp-edges;
   image-rendering: -o-crisp-edges;
@@ -30,6 +38,8 @@ body {
   image-rendering: optimize-contrast;
   -ms-interpolation-mode: nearest-neighbor;
 }
+
+
 
 #share {
   margin: 10px auto;
